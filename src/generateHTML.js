@@ -73,7 +73,7 @@ function generateHTML(data)  {
             organize.push(internCard);
         }  
     }
-    const employeeCards = page.join('')
+    const employeeCards = organize.join('')
     const generateTeam = generateTeamPage(employeeCards); 
     return generateTeam;
 

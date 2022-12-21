@@ -1,9 +1,9 @@
-import generateHTML from './src/generateHTML';
-import Manager from './lib/Manager';
-import Engineer from './lib/Engineer';
-import Intern from './lib/Intern'; 
-import { writeFileSync } from 'fs'; 
-import { prompt } from 'inquirer';
+import generateHTML from './src/generateHTML.js';
+import Manager from './lib/Manager.js';
+import Engineer from './lib/Engineer.js';
+import Intern from './lib/Intern.js'; 
+import fs from 'fs'; 
+import inquirer from 'inquirer';
 
 
 const team = []; 
@@ -89,7 +89,7 @@ const questions = [
   ];
   
   function init() {
-    prompt(questions).then(answers => {
+    inquirer.prompt(questions).then(answers => {
  
       if (answers.role === 'Im all done!') {
         console.log(team);
@@ -98,7 +98,7 @@ const questions = [
       }
 
       if (answers.role === 'Manager') {
-        prompt(manager).then(answers => {
+        inquirer.prompt(manager).then(answers => {
           const manager = new Manager(answers.name, answers.id, answers.email, answers.office);
           team.push(manager);
           init();
@@ -106,7 +106,7 @@ const questions = [
       }
  
       if (answers.role === 'Engineer') {
-        prompt(engineer).then(answers => {
+        inquirer.prompt(engineer).then(answers => {
           const engineer = new Engineer(answers.name, answers.id, answers.email, answers.github);
           team.push(engineer);
           init();
@@ -114,7 +114,7 @@ const questions = [
       }
 
       if (answers.role === 'Intern') {
-        prompt(intern).then(answers => {
+        inquirer.prompt(intern).then(answers => {
           const intern = new Intern(answers.name, answers.id, answers.email, answers.school);
           team.push(intern);
           init();
@@ -127,7 +127,7 @@ const questions = [
   
  
   function generateTeam() {
-    writeFileSync('./dist/index.html', generateHTML(team));
+    fs.writeFileSync('./dist/index.html', generateHTML(team));
     console.log('Team created!')
   };
   

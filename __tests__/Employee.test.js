@@ -1,4 +1,4 @@
-import Employee from '../lib/Employee';
+import Employee from '../lib/Employee.js';
 
 test('employee', () => {
     const employee = new Employee('Ethan', 24, 'weepel@gmail.com');

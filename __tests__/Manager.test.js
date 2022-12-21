@@ -1,4 +1,4 @@
-import Manager from '../lib/Manager';
+import Manager from '../lib/Manager.js';
  
 test('Manager', () => {
     const manager = new Manager('Mikey', 404, 'pizza4for4@gmail', 5);
