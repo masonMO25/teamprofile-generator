@@ -31,7 +31,7 @@ const generateEngineer = function (engineer) {
             </div>
         </div>
     </div>
-    `
+    `;
 }
 
 const generateIntern = function (intern) {
@@ -49,7 +49,34 @@ const generateIntern = function (intern) {
             </div>
     </div>
 </div>
-    `
+    `;
+}
+
+function generateHTML(data)  {
+    const organize = []; 
+    for (let i = 0; i < data.length; i++) {
+        const employee = data[i];
+        const role = employee.getRole(); 
+
+        if (role === 'Manager') {
+            const managerCard = generateManager(employee);
+            organize.push(managerCard);
+        }
+
+        if (role === 'Engineer') {
+            const engineerCard = generateEngineer(employee);
+            organize.push(engineerCard);
+        }
+
+        if (role === 'Intern') {
+            const internCard = generateIntern(employee);
+            organize.push(internCard);
+        }  
+    }
+    const employeeCards = page.join('')
+    const generateTeam = generateTeamPage(employeeCards); 
+    return generateTeam;
+
 };
 
 const generateTeamPage = function (employeeCards) {   
@@ -81,31 +108,6 @@ const generateTeamPage = function (employeeCards) {
   <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.3.1/js/bootstrap.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.27.0/moment.min.js"></script>
 `;
-}
+};
 
-export default function generateHTML(data) {
-    const pageArray = []; 
-    for (let i = 0; i < data.length; i++) {
-        const employee = data[i];
-        const role = employee.getRole(); 
-
-        if (role === 'Manager') {
-            const managerCard = generateManager(employee);
-            pageArray.push(managerCard);
-        }
-
-        if (role === 'Engineer') {
-            const engineerCard = generateEngineer(employee);
-            pageArray.push(engineerCard);
-        }
-
-        if (role === 'Intern') {
-            const internCard = generateIntern(employee);
-            pageArray.push(internCard);
-        }  
-    }
-    const employeeCards = pageArray.join('')
-    const generateTeam = generateTeamPage(employeeCards); 
-    return generateTeam;
-
-}
+module.exports = generateHTML;
