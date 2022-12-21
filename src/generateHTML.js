@@ -110,4 +110,4 @@ const generateTeamPage = function (employeeCards) {
 `;
 };
 
-module.exports = generateHTML;
+export default generateHTML;
